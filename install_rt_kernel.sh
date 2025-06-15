@@ -53,7 +53,7 @@ fi
 install_rt_kernel() {
     sudo cp -rf ./compiled/5.15.148-rt-tegra /lib/modules/ && \
     sudo cp -rf ./compiled/dtbs /boot/dtbs/ && \
-    sudo cp -rf ./compiled/image.rt /boot/image.rt && \
+    sudo cp -rf ./compiled/Image.rt /boot/image.rt && \
     sudo cp -rf ./compiled/initrd.img-5.15.148-rt-tegra /boot/initrd.img-5.15.148-rt-tegra
 
     # Create a temporary file with the content to insert
