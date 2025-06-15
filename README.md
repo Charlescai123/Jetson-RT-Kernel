@@ -1,6 +1,6 @@
 # Jetson-RT-Kernel
 
-This repo includes a compiled **real-time** kernel for [Nvidia Jetson AGX Orin (Developer-Kit)](https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/index.html) and a script for installation. The system version information is below:
+This repo includes a precompiled **real-time (RT)** kernel for [Nvidia Jetson AGX Orin (Developer-Kit)](https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/index.html) along with an installation script. The kernel is built against the following system versions:
 
 * *JetPack Version - 6.2*
 * *NVIDIA Jetson Linux - 36.4.3*
@@ -8,30 +8,28 @@ This repo includes a compiled **real-time** kernel for [Nvidia Jetson AGX Orin (
 
 **Real-Time Kerenel Patch**:
 
-> **Preliminary:** The real-time (RT) kernel enables in-response CPU scheduling, resulting in improved system responsiveness for real-time applications. We strongly recommend that users apply the RT kernel patch for their system’s real-time performance.
+> **Overview:** The RT kernel introduces preemptive scheduling, significantly improving system responsiveness for real-time workloads. We `strongly recommend` applying the RT patch for latency-sensitive applications.
 
 
-> **Warning:** Nvidia has provided the rt-kernel with a Debian package management-based [OTA](https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/Kernel/KernelCustomization.html#real-time-kernel-using-ota-update). But since it has been reported to cause the system to [freeze at boot](https://forums.developer.nvidia.com/t/boot-freezing-when-installing-preemptrt-on-nvme-setup-with-agx-orin-dev-kit-jetpack-6-2/323869) when entering the GUI, we recommend building and installing the kernel manually.
+> **Warning:** Although NVIDIA provides an [OTA-based](https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/Kernel/KernelCustomization.html#real-time-kernel-using-ota-update) RT kernel installation, it has been reported to cause [boot-time freezes](https://forums.developer.nvidia.com/t/boot-freezing-when-installing-preemptrt-on-nvme-setup-with-agx-orin-dev-kit-jetpack-6-2/323869) when entering the GUI. Manual installation is recommended for stability.
 
 ## Kernel Compile
 
-> **Recommendation:** It is highly recommended to have a rough review for Nvidia's officia [documents](https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/index.html) if you are new to Jetson. 
-
-Nvidia has provided a detailed [guidance](https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/Kernel/KernelCustomization.html#sd-kernel-kernelcustomization) on building a customized kernel for Jetson platforms. Following this procedure typically produces:
+If you’re new to Jetson development, we suggest reading [Jetson Developer Guide](https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/index.html) beforehand. To build the RT kernel manually, refer to NVIDIA’s official instructions: [Kernel Customization Guide](https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/Kernel/KernelCustomization.html#sd-kernel-kernelcustomization). Following this guide will produce:
 
    * A bindary real-time kernel image
    * The kernel module 5.15.148-rt-tegra
-   * A set of DTB (Device Tree Blob) files for boot configuration
+   * Device Tree Blobs (DTBs) for boot configuration
 
-> **Note:** This repo contains the compiled real-time kernel and related dependencies. If you want to apply it, make sure your Jetson L4T is the same version as required. 
+> **Note:** This repository contains precompiled binaries for these components. Ensure your Jetson system matches the required L4T version to avoid compatibility issues.
 
-(Optional) If UEFI Secure Boot is not enabled, you can skip the kernel signing and encryption steps. Or otherwise, follow [Secure Boot](https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/Security/SecureBoot.html#sd-security-secureboot).
+(Optional) If UEFI Secure Boot is `disabled`, you can skip the kernel signing and encryption steps. Otherwise, follow Nvidia's [Secure Boot Guide](https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/Security/SecureBoot.html#sd-security-secureboot).
 
 ## Installation
 
 There're two options provided to install the compiled kernel:
-   * Flash using `flash.sh`: Suitable for full image flashing. See [flashing support](https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/SD/FlashingSupport.html) for details.
-   * Install the built kernel directly using the script `install_rt_kernel.sh`
+   * Flash using `flash.sh`: ideal for full image flashing. See [flashing support](https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/SD/FlashingSupport.html) for more details.
+   * In-place installation by `install_rt_kernel.sh`: apply the precompiled RT kernel directly on the device.
 
 For the second option, clone the repository on your Jetson device:
 
@@ -61,6 +59,8 @@ Running this script will:
    * Add a new boot entry to `/boot/extlinux/extlinux.conf`
 
 Once complete, reboot and select the real-time kernel from the boot menu.
+
+> **Tip:** To make the RT kernel the default boot option, edit `/boot/extlinux/extlinux.conf` and set `DEFAULT real-time`.
 
 <!-- 
 Here are some useful links for reference: 
