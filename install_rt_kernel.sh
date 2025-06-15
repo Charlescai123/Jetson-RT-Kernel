@@ -52,24 +52,21 @@ fi
 # ======== Install RT Kernel ========
 install_rt_kernel() {
     sudo cp -rf ./compiled/5.15.148-rt-tegra /lib/modules/ && \
-    sudo cp -rf ./compiled/dtbs /boot/dtbs/ && \
-    sudo cp -rf ./compiled/Image.rt /boot/image.rt && \
+    sudo cp -rf ./compiled/dtbs/* /boot/dtb/ && \
+    sudo cp -rf ./compiled/dtbs/* /boot && \
+    sudo cp -rf ./compiled/Image.rt /boot/Image.rt && \
     sudo cp -rf ./compiled/initrd.img-5.15.148-rt-tegra /boot/initrd.img-5.15.148-rt-tegra
 
-    # Create a temporary file with the content to insert
-    cat << EOF > /tmp/kernel_config
+    # Insert the content into /boot/extlinux/extlinux.conf
+    sudo cat << EOF >> /boot/extlinux/extlinux.conf
+
 LABEL real-time
     MENU LABEL real-time kernel
     LINUX /boot/Image.rt
     INITRD /boot/initrd.img-5.15.148-rt-tegra
     APPEND \${cbootargs} root=$ROOT_DEVICE rw rootwait rootfstype=ext4 mm init_loglevel=4 console=ttyTCU0,115200 console=ttyAMA0,115200 firmware_class.path=/etc/firmware fbcon=map:0 nospectre_bhb video=efifb:off console=tty0
+
 EOF
-
-    # Insert the content into /boot/extlinux/extlinux.conf
-    sudo sed -i '/TIMEOUT 10/r /tmp/kernel_config' /boot/extlinux/extlinux.conf
-
-    # Clean up temporary file
-    rm -f /tmp/kernel_config
 
     return $?
 }
