@@ -51,7 +51,7 @@ fi
 
 # ======== Install RT Kernel ========
 install_rt_kernel() {
-    sudo cp -rf ./compiled/5.15.148-rt-tegra /lib/modules/ && \
+    sudo tar -xzf ./compiled/5.15.148-rt-tegra.tar.gz -C /lib/modules/ && \
     sudo cp -rf ./compiled/dtbs/* /boot/dtb/ && \
     sudo cp -rf ./compiled/dtbs/* /boot && \
     sudo cp -rf ./compiled/Image.rt /boot/Image.rt && \

@@ -28,8 +28,8 @@
 *.order
 *.elf
 *.bin
-*.tar
-*.gz
+# *.tar
+# *.gz
 *.bz2
 *.lzma
 *.xz
