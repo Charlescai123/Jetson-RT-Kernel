@@ -94,7 +94,7 @@ The expected output should be:
 
 Go to the `/test` file and Run the RT test
 
-   ```
+   ```bash
    cd test
    sudo ./rt-test.sh --cores <number-of-cores>
    ```
