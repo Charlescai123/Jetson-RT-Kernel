@@ -1,0 +1,32 @@
+# Soft dependencies extracted from modules themselves.
+softdep cifs gcm
+softdep cifs ccm
+softdep cifs aead2
+softdep cifs sha512
+softdep cifs sha256
+softdep cifs cmac
+softdep cifs aes
+softdep cifs nls
+softdep cifs md5
+softdep cifs hmac
+softdep cifs ecb
+softdep btrfs pre: blake2b-256
+softdep btrfs pre: sha256
+softdep btrfs pre: xxhash64
+softdep btrfs pre: crc32c
+softdep xts pre: ecb
+softdep ipmi_msghandler post: ipmi_devintf
+softdep wm8994 pre: wm8994_regulator
+softdep vc4 pre: snd-soc-hdmi-codec
+softdep genet pre: mdio-bcm-unimac
+softdep xt_LOG pre: nf_log_syslog
+softdep libcrc32c pre: crc32c
+softdep cdi_pwm pre: cdi_dev
+softdep nvgpu pre: governor_pod_scaling
+softdep isc_pwm pre: isc_dev
+softdep tegra_drm pre: tegra_wmark
+softdep cdi_mgr pre: cdi_pwm
+softdep cdi_dev pre: cdi_gpio
+softdep isc_dev pre: isc_gpio
+softdep snd_soc_tegra_virt_t210ref_pcm pre: snd_soc_tegra210_virt_alt_adsp
+softdep isc_mgr pre: isc_pwm
