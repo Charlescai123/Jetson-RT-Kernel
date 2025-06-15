@@ -58,10 +58,10 @@ install_rt_kernel() {
 
     # Create a temporary file with the content to insert
     cat << EOF > /tmp/kernel_config
-LABEL primary
-    MENU LABEL primary kernel
-    LINUX /boot/Image
-    INITRD /boot/initrd
+LABEL real-time
+    MENU LABEL real-time kernel
+    LINUX /boot/Image.rt
+    INITRD /boot/initrd.img-5.15.148-rt-tegra
     APPEND \${cbootargs} root=$ROOT_DEVICE rw rootwait rootfstype=ext4 mm init_loglevel=4 console=ttyTCU0,115200 console=ttyAMA0,115200 firmware_class.path=/etc/firmware fbcon=map:0 nospectre_bhb video=efifb:off console=tty0
 EOF
 
