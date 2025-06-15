@@ -60,7 +60,7 @@ Running this script will:
 
 Once complete, reboot and select the real-time kernel from the boot menu.
 
-> **Tip:** To make RT kernel the default boot option, set `DEFAULT real-time` in `/boot/extlinux/extlinux.conf`
+> **Tip:** To make RT kernel as the default boot option, set `DEFAULT real-time` in `/boot/extlinux/extlinux.conf`
 
 <!-- 
 Here are some useful links for reference: 
