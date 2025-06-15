@@ -233,9 +233,14 @@ You are all set now! For the next step:
 
 | 4 Cores (non real-time kernel)                                        | 4 Cores (real-time kernel)                                        |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------|
-| <img src="./test/results/4-cores/non-rt.png" height="245" alt="rlm"/> | <img src="./test/results/4-cores/rt.png" height="245" alt="rlm"/> |
+| <img src="./test/results/4-cores/non-rt.png" height="300" alt="rlm"/> | <img src="./test/results/4-cores/rt.png" height="300" alt="rlm"/> |
 
-3. Analysis:
+| 8 Cores (non real-time kernel)                                        | 8 Cores (real-time kernel)                                        |
+|-----------------------------------------------------------------------|-------------------------------------------------------------------|
+| <img src="./test/results/8-cores/non-rt.png" height="300" alt="rlm"/> | <img src="./test/results/8-cores/rt.png" height="300" alt="rlm"/> |
+
+
+5. Analysis:
    - More sample on the left means lower latency in general
    - More clustered samples indicate less flutter
    - The max latency should not deviate far from mean value (typically under 100us)
